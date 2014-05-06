@@ -3,6 +3,7 @@ class Game < ActiveRecord::Base
   has_many :frames
 
   FRAMES_PER_GAME = 10
+  PINS = 10
 
   def start!
     raise 'You need 1 or more players to start bowling' unless self.players.count > 0
