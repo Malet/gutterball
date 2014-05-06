@@ -30,6 +30,28 @@ describe Game do
         expect(Frame.where(game: game).count).to eq(20)
       end
     end
-
   end
+
+  describe '#roll' do
+    let(:game){ Game.create!(players: players) }
+    subject{ game.roll(player, pins) }
+    before{ game.start! }
+
+    context '1 player game' do
+      let(:players){ [create(:alice)] }
+      let(:player){ players.first }
+      let(:pins){ 4 }
+
+      it 'should increment the amount of rolls when a player rolls' do
+        expect{ subject }.
+        to change{
+          Roll.joins(:frame).
+          where('frames.player_id = ?', player.id).
+          where('frames.game_id   = ?', game.id).count
+        }.
+        by(+1)
+      end
+    end
+  end
+
 end
