@@ -7,4 +7,9 @@ class Frame < ActiveRecord::Base
     1  == self.rolls.count &&
     10 == self.rolls.first.pins
   end
+
+  def spare?
+    2  == self.rolls.count &&
+    10 == self.rolls.sum(:pins)
+  end
 end
