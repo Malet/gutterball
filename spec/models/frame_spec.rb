@@ -1,5 +1,8 @@
 require 'spec_helper'
 
 describe Frame do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    it{ should belong_to(:game) }
+    it{ should have_many(:rolls) }
+  end
 end
