@@ -16,7 +16,7 @@ describe Game do
     end
 
     context 'has 1 player' do
-      let(:players){ [Player.create!(name: 'Alice')] }
+      let(:players){ [create(:alice)] }
       it 'should create 10 frames for 1 player' do
         subject
         expect(Frame.where(game: game).count).to eq(10)
@@ -24,7 +24,7 @@ describe Game do
     end
 
     context 'has 2 players' do
-      let(:players){ [Player.create!(name: 'Alice'), Player.create!(name: 'Bob')] }
+      let(:players){ [create(:alice), create(:bob)] }
       it 'should create 20 frames for 2 players' do
         subject
         expect(Frame.where(game: game).count).to eq(20)
