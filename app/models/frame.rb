@@ -12,4 +12,12 @@ class Frame < ActiveRecord::Base
     2  == self.rolls.count &&
     10 == self.rolls.sum(:pins)
   end
+
+  def last_frame?
+    10 == self.number
+  end
+
+  def number
+    @frame_number ||= self.game.frames.where(player: self.player).index(self) + 1
+  end
 end
